@@ -126,4 +126,4 @@ denylist for identity, or a non-persisted header hook, be provided?
 
 ## Related Issue
 
-ISSUE_PLACEHOLDER
+https://github.com/expo/expo/issues/51268
