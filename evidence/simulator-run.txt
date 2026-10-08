@@ -1,0 +1,22 @@
+No runtime specified, using 'iOS 26.5 (26.5 - 23F73) - com.apple.CoreSimulator.SimRuntime.iOS-26-5'
+## 1. embedded launch: fetch with token A, rotate override to token B, reloadAsync()
+## 2. cold launch with the persisted token-B override
+## 3. restore token A, reloadAsync(): the same downloaded update becomes launchable again
+## evidence
+app launch bundle=embedded updateId=75c97a59-051f-4624-861f-f84b56007fda embedded=true emergency=false reason=null
+server /manifest Authorization=Bearer synthetic-token-A
+server /bundle Authorization=Bearer synthetic-token-A
+app download bundle=embedded updateId=75c97a59-051f-4624-861f-f84b56007fda embedded=true emergency=false reason=null result={"isNew":true,"manifestId":"353b16f7-0f18-4572-9017-2ff56ace39e1"}
+app rotated-to-B bundle=embedded updateId=75c97a59-051f-4624-861f-f84b56007fda embedded=true emergency=false reason=null
+app reload-rejected bundle=embedded updateId=75c97a59-051f-4624-861f-f84b56007fda embedded=true emergency=false reason=null error="Error: UpdatesReloadException: Could not reload application. Ensure you have set the `appContext` property of AppController. (at EXUpdates/RelaunchProcedure.swift:95)"
+  updates-log error: Failed to relaunch: No launchable updates found in database: Unknown error
+app launch bundle=embedded updateId=null embedded=false emergency=true reason="No launchable updates found in database: Unknown error"
+app launch bundle=embedded updateId=null embedded=false emergency=true reason="No launchable updates found in database: Unknown error"
+app restored-A bundle=embedded updateId=null embedded=false emergency=true reason="No launchable updates found in database: Unknown error"
+app launch bundle=downloaded updateId=353b16f7-0f18-4572-9017-2ff56ace39e1 embedded=false emergency=true reason="No launchable updates found in database: Unknown error"
+--- UserDefaults dev.expo.updates.updatesConfigOverride after: rotation to B
+(absent)
+--- UserDefaults dev.expo.updates.updatesConfigOverride after: cold launch
+{"requestHeaders":{"Authorization":"Bearer synthetic-token-B"}}
+--- UserDefaults dev.expo.updates.updatesConfigOverride after: restore to A
+{"requestHeaders":{"Authorization":"Bearer synthetic-token-A"}}

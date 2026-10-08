@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "AuthLaunchRepro",
+    "slug": "auth-launch-repro",
+    "version": "1.0.0",
+    "runtimeVersion": "auth-repro-1",
+    "ios": {
+      "bundleIdentifier": "org.example.authlaunchrepro",
+      "infoPlist": { "NSAppTransportSecurity": { "NSAllowsArbitraryLoads": true } }
+    },
+    "updates": {
+      "url": "http://127.0.0.1:18765/manifest",
+      "checkAutomatically": "NEVER",
+      "requestHeaders": { "Authorization": "Bearer synthetic-token-A" }
+    }
+  }
+}

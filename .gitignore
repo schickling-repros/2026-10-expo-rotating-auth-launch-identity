@@ -1,0 +1,8 @@
+node_modules/
+ios/
+dist/
+.expo/
+.build/
+.evidence/
+.xcodebuild.log
+package-lock.json

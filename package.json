@@ -1,0 +1,17 @@
+{
+  "name": "expo-rotating-auth-launch-identity",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "prebuild": "expo prebuild --platform ios --no-install",
+    "export:ota": "EXPO_PUBLIC_BUNDLE_KIND=downloaded expo export --platform ios --output-dir dist",
+    "server": "node server.mjs"
+  },
+  "dependencies": {
+    "expo": "57.0.24",
+    "expo-updates": "57.0.25",
+    "react": "19.2.3",
+    "react-native": "0.86.3"
+  }
+}
